@@ -174,10 +174,8 @@ body {
     
     /* Ensure all text is left-aligned and full width on mobile */
     .left-event > div, .right-event > div {
-        width: 100%;
-        padding: 0 0 0 20px;
-        text-align: left !important;
-    }
+    /* Fixed: Removed width: 100% and text-align: left !important; to stop cramping on mobile. */
+    padding: 0 0 0 20px; 
 }
 
 
@@ -192,4 +190,5 @@ body {
     }
 
 }
+
 
