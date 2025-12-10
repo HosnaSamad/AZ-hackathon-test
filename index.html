@@ -14,10 +14,11 @@
 <body class="antialiased min-h-screen">
 
     <!-- Header & Persistent Navigation (Sticky to the top) -->
-    <header id="main-header" class="sticky top-0 z-50 transition-shadow duration-300">
+       <header id="main-header" class="sticky top-0 z-50 transition-shadow duration-300 bg-dark"> 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 class="text-3xl font-extrabold text-primary-light cursor-pointer tracking-wider" onclick="showPage('home')">HealthXHer</h1>
-            <nav class="hidden md:flex space-x-6 text-gray-300 font-medium text-sm">
+            
+            <nav id="desktop-nav" class="hidden md:flex space-x-6 text-gray-300 font-medium text-sm">
                 <a href="#home" class="nav-link hover:text-primary-light transition duration-150 p-2 rounded-lg" data-page="home">Dashboard</a>
                 <a href="#challenges" class="nav-link hover:text-primary-light transition duration-150 p-2 rounded-lg" data-page="challenges">Tracks</a>
                 <a href="#schedule" class="nav-link hover:text-primary-light transition duration-150 p-2 rounded-lg" data-page="schedule">Full Schedule</a>
@@ -26,9 +27,13 @@
                 <a href="#submission" class="nav-link hover:text-primary-light transition duration-150 p-2 rounded-lg" data-page="submission">Submission</a>
                 <a href="#faq" class="nav-link hover:text-primary-light transition duration-150 p-2 rounded-lg" data-page="faq">FAQ</a>
             </nav>
+            
             <div class="flex items-center space-x-3">
-                 <!-- Registration CTA Button -->
-                <a href="#register" class="bg-primary text-white px-5 py-2 rounded-full font-bold hover:bg-primary-light transition duration-300 shadow-lg nav-link text-sm" data-page="register">
+                 <button id="menu-button" class="md:hidden text-primary-light text-3xl font-extrabold p-2 focus:outline-none">
+                     <span id="open-icon">☰</span>
+                     <span id="close-icon" class="hidden">✕</span>
+                 </button>
+                 <a href="#register" class="bg-primary text-white px-4 py-2 md:px-5 md:py-2 rounded-full font-bold hover:bg-primary-light transition duration-300 shadow-lg nav-link text-xs md:text-sm hidden sm:inline-block" data-page="register">
                     Register Now
                 </a>
             </div>
@@ -670,6 +675,7 @@
 </body>
 
 </html
+
 
 
 
