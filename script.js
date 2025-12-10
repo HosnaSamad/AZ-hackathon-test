@@ -4,6 +4,7 @@
  * Switches the active page content using a simple display: none / display: block toggle.
  * @param {string} pageId - The ID of the section/page to display (e.g., 'home', 'challenges').
  */
+// Modified showPage function to automatically close the mobile menu
 function showPage(pageId) {
     const allPages = document.querySelectorAll('.page-content');
     const targetPage = document.getElementById(pageId);
@@ -13,26 +14,39 @@ function showPage(pageId) {
         console.error(`Page ID '${pageId}' not found.`);
         return;
     }
-
-    // 1. Deactivate all currently active pages
-    allPages.forEach(page => {
-        page.classList.remove('active');
-    });
-
-    // 2. Activate the new page (requestAnimationFrame ensures CSS changes are handled efficiently)
-    requestAnimationFrame(() => {
-        targetPage.classList.add('active');
-        
-        // Update URL hash without forcing a full page reload
-        history.pushState({ page: pageId }, '', `#${pageId}`);
-
-        // Scroll smoothly to the top of the new page content
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-
-        // Re-initialize animations for the newly visible page to trigger fade-in effects
-        initializeIntersectionObserver();
-    });
+    
+    // !!! NEW: Close the mobile menu if it is open !!!
+    if (!mobileMenu.classList.contains('-translate-y-full')) {
+         toggleMobileMenu(); // Calls the function to close the menu
+    }
+    // ... existing showPage logic ...
+// ... existing code ...
 }
+
+
+// --- 4. Initialization and Event Listeners (Modified) ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... existing navLinks logic ...
+    
+    // Set up click listener for the mobile menu button (NEW)
+    if (menuButton) {
+        menuButton.addEventListener('click', toggleMobileMenu);
+    }
+    
+    // ... existing window.addEventListener('popstate') logic ...
+    
+    // ... existing FAQ collapse/expand logic ...
+   
+    // ... existing initial page load state logic ...
+
+    // Add scroll event listener for the smart header effect
+    window.addEventListener('scroll', handleSmartHeader);
+    handleSmartHeader(); // Check header state on load
+
+    // Initial run of the observer to animate content on the first visible page
+    initializeIntersectionObserver();
+});
 
 
 // --- 2. Scroll-In Animation Logic (Intersection Observer) ---
@@ -121,6 +135,84 @@ function handleSmartHeader() {
     lastScrollY = currentScrollY;
 }
 
+// ... existing code ...
+
+// --- 5. Mobile Menu Logic (NEW) ---
+
+const mobileMenu = document.getElementById('mobile-menu');
+const menuButton = document.getElementById('menu-button');
+const openIcon = document.getElementById('open-icon');
+const closeIcon = document.getElementById('close-icon');
+
+/**
+ * Toggles the visibility of the mobile menu.
+ */
+function toggleMobileMenu() {
+    // Check if the menu is currently hidden (has the -translate-y-full class)
+    const isHidden = mobileMenu.classList.contains('-translate-y-full');
+
+    if (isHidden) {
+        // Show the menu
+        mobileMenu.classList.remove('-translate-y-full');
+        openIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        // Prevent body scrolling when menu is open
+        document.body.style.overflow = 'hidden';
+    } else {
+        // Hide the menu
+        mobileMenu.classList.add('-translate-y-full');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        // Restore body scrolling
+        document.body.style.overflow = '';
+    }
+}
+
+
+// Modified showPage function to automatically close the mobile menu
+function showPage(pageId) {
+    const allPages = document.querySelectorAll('.page-content');
+    const targetPage = document.getElementById(pageId);
+
+    // Guard clause to prevent errors if the ID doesn't exist
+    if (!targetPage) {
+        console.error(`Page ID '${pageId}' not found.`);
+        return;
+    }
+    
+    // !!! NEW: Close the mobile menu if it is open !!!
+    if (!mobileMenu.classList.contains('-translate-y-full')) {
+         toggleMobileMenu(); // Calls the function to close the menu
+    }
+    // ... existing showPage logic ...
+// ... existing code ...
+}
+
+
+// --- 4. Initialization and Event Listeners (Modified) ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... existing navLinks logic ...
+    
+    // Set up click listener for the mobile menu button (NEW)
+    if (menuButton) {
+        menuButton.addEventListener('click', toggleMobileMenu);
+    }
+    
+    // ... existing window.addEventListener('popstate') logic ...
+    
+    // ... existing FAQ collapse/expand logic ...
+   
+    // ... existing initial page load state logic ...
+
+    // Add scroll event listener for the smart header effect
+    window.addEventListener('scroll', handleSmartHeader);
+    handleSmartHeader(); // Check header state on load
+
+    // Initial run of the observer to animate content on the first visible page
+    initializeIntersectionObserver();
+});
+
 
 // --- 4. Initialization and Event Listeners ---
 
@@ -185,4 +277,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial run of the observer to animate content on the first visible page
     initializeIntersectionObserver();
+
 });
