@@ -38,12 +38,8 @@ body {
 .border-primary-light { border-color: var(--primary-light); }
 .border-accent-light { border-color: var(--primary-light); } /* Alias for the brightest accent */
 .hero-section { background-color: var(--primary-color); }
-.texture-bg { 
-    background-image: url('az-signature-picture-woman.png');
-    background-size: cover;     /* Scale image to cover the entire container */
-    background-repeat: no-repeat;
-    background-position: center;
-}
+.texture-bg { background-image: url(az-signature-picture-woman.png); background-size: 20px; }
+
 
 
 /* Page Content Visibility (SPA navigation handling) */
@@ -196,3 +192,4 @@ body {
     }
 
 }
+
