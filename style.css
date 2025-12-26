@@ -7,12 +7,12 @@
     --background-dark: #5c063a;   /* Darkest Berry/Maroon - Main Body Background (dark) */
     --content-bg-light: #80134f;  /* Slightly lighter for section separation (medium-dark) */
     --primary-color: #830251;     /* Core Brand Color/CTAs (medium) */
-    --primary-light: #c84877;     /* Brightest Accent/Highlight (light) */
+    --primary-light: #f0ae2d;     /* Brightest Accent/Highlight (light) */
+    --secondary-light: #c84877;     /* Brightest Accent/Highlight (light) */
     --text-light: #f3f4f6;        /* White/Light text for readability */
     --neutral-card: #F3E8F4;      /* Very Pale Lilac/White card background (neutral/light) */
     --text-dark: #5c063a;         /* Dark text for light cards */
 }
-
 /* ------------------------------------------- */
 /* 2. BASE STYLES AND TAILWIND OVERRIDES */
 /* ------------------------------------------- */
@@ -190,5 +190,6 @@ body {
     }
 
 }
+
 
 
